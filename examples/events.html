@@ -1,0 +1,32 @@
+<button>Click me</button>
+<button>Click me</button>
+<button>Click me</button>
+
+<a href="somelink.html">Click here</a>
+
+<script>
+  document.querySelector('a').addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('event', event);
+  });
+
+  const button = document.querySelectorAll('button');
+
+  console.log('button', button);
+
+  button.forEach((element) => {
+    element.addEventListener('click', function (evt) {
+      console.log('Element ', evt, ' was clicked');
+
+      evt.target.innerText = 'Button was clicked';
+    });
+
+    // element.removeEventListener('click', () => {});
+  });
+
+  // button.addEventListener('click', function (evt) {
+  //   console.log('Element ', evt, ' was clicked');
+
+  //   evt.target.innerText = 'Button was clicked';
+  // });
+</script>
