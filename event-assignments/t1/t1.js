@@ -103,7 +103,10 @@ addButton.addEventListener('click', () => {
 
     todoList.push(newTodoObject);
 
-    form.querySelector('input').value = '';
+    // form.querySelector('input').value = '';
+
+    // form.reset() might be better as it clears all the inputs from a field
+    form.reset();
 
     console.log('todoList', todoList);
   });
