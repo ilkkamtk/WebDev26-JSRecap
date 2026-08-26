@@ -29,12 +29,26 @@ async function getRestaurants() {
       tr.insertAdjacentElement('beforeend', td1);
       tr.insertAdjacentElement('beforeend', td2);
 
-      tr.addEventListener('click', () => {
+      tr.addEventListener('click', async () => {
         document
           .querySelectorAll('.highlight')
           .forEach((element) => element.classList.remove('highlight'));
 
         tr.classList.add('highlight');
+
+        // get menu data
+        // eslint-disable-next-line no-undef
+        const todaysMenu = await fetchData(
+          `${apiURL}/restaurants/daily/${restaurant._id}/en`
+        );
+
+        console.log(todaysMenu);
+
+        let menu = '<tr>';
+        for (const course in todaysMenu.courses) {
+          // add course data to menu as <td>s
+        }
+        menu += '</tr>';
 
         const dialog = document.querySelector('dialog');
 
@@ -45,6 +59,10 @@ async function getRestaurants() {
         City: <br />
         Phone number: <br />
         Company: <br />
+
+        <table>
+        ${menu}
+        </table>
 
         <button>Close</button>
         `;

@@ -3,8 +3,11 @@
 // eslint-disable-next-line no-unused-vars
 async function fetchData(url, options) {
   const response = await fetch(url, options);
-  if (!response.ok) {
+  const json = await response.json();
+  if (!response.ok && json.message) {
+    throw new Error(json.message);
+  } else if (!response.ok) {
     throw new Error('fetchData error ' + response.statusText);
   }
-  return await response.json();
+  return json;
 }
