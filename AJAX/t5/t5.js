@@ -18,7 +18,7 @@ const getRestaurants = async () => {
 
     console.log('first after', restaurants[0]);
 
-    restaurants.forEach(function (restaurant) {
+    restaurants.forEach((restaurant) => {
       // destrucure restaurant object
       const {address, city, company, name, phone, location, postalCode} =
         restaurant;
@@ -51,7 +51,7 @@ const getRestaurants = async () => {
         console.log(todaysMenu);
 
         let menu = '';
-        todaysMenu.courses.forEach(function (course) {
+        todaysMenu.courses.forEach((course) => {
           // add course data to menu as <td>s
           console.log(course);
           const {name, diets, price} = course;
