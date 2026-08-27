@@ -104,6 +104,7 @@ const getRestaurants = async () => {
       table.insertAdjacentElement('beforeend', tr);
     });
   } catch (error) {
+    // create dialog for errors
     console.error(error.message);
   }
 };
