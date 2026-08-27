@@ -56,10 +56,27 @@ const getRestaurants = async () => {
           console.log(course);
           const {name, diets, price} = course;
 
+          const filteredDiets = diets.filter((diet) => diet !== '*');
+          const dietIcons = filteredDiets.map((diet) => {
+            let icon = '';
+            switch (diet) {
+              case 'G':
+                icon = '🌾&#xfeff;🚫';
+                break;
+              case 'L':
+                icon = '🥛&#xfeff;🚫';
+                break;
+              default:
+                icon = diet;
+                break;
+            }
+            return icon;
+          });
+
           menu += `
             <tr>
               <td>${name}</td>
-              <td>${diets}</td>
+              <td>${dietIcons}</td>
               <td>${price || 'Not provided'}</td>
             </tr>
           `;
