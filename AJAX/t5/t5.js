@@ -51,7 +51,7 @@ const getRestaurants = async () => {
         console.log(todaysMenu);
 
         let menu = '';
-        for (const course of todaysMenu.courses) {
+        todaysMenu.courses.forEach(function (course) {
           // add course data to menu as <td>s
           console.log(course);
           const {name, diets, price} = course;
@@ -63,7 +63,7 @@ const getRestaurants = async () => {
               <td>${price || 'Not provided'}</td>
             </tr>
           `;
-        }
+        });
 
         const dialog = document.querySelector('dialog');
 
