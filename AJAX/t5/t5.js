@@ -58,19 +58,14 @@ const getRestaurants = async () => {
 
           const filteredDiets = diets.filter((diet) => diet !== '*');
           const dietIcons = filteredDiets.map((diet) => {
-            let icon = '';
             switch (diet) {
               case 'G':
-                icon = '🌾&#xfeff;🚫';
-                break;
+                return '🌾&#xfeff;🚫';
               case 'L':
-                icon = '🥛&#xfeff;🚫';
-                break;
+                return '🥛&#xfeff;🚫';
               default:
-                icon = diet;
-                break;
+                return diet;
             }
-            return icon;
           });
 
           menu += `
