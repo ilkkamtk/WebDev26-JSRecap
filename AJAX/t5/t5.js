@@ -18,7 +18,7 @@ const getRestaurants = async () => {
 
     console.log('first after', restaurants[0]);
 
-    for (const restaurant of restaurants) {
+    restaurants.forEach(function (restaurant) {
       // destrucure restaurant object
       const {address, city, company, name, phone, location, postalCode} =
         restaurant;
@@ -90,7 +90,7 @@ const getRestaurants = async () => {
       });
 
       table.insertAdjacentElement('beforeend', tr);
-    }
+    });
   } catch (error) {
     console.error(error.message);
   }
