@@ -1,8 +1,9 @@
+import {fetchData} from './t4.js';
+
 const apiURL = 'https://media2.edu.metropolia.fi/restaurant/api/v1';
 
 const getRestaurants = async () => {
   try {
-    // eslint-disable-next-line no-undef
     const restaurants = await fetchData(apiURL + '/restaurants');
 
     console.log('restaurants', restaurants);
@@ -21,6 +22,8 @@ const getRestaurants = async () => {
       // destrucure restaurant object
       const {address, city, company, name, phone, location, postalCode} =
         restaurant;
+
+      console.log(location);
 
       const tr = document.createElement('tr');
 
@@ -41,7 +44,6 @@ const getRestaurants = async () => {
         tr.classList.add('highlight');
 
         // get menu data
-        // eslint-disable-next-line no-undef
         const todaysMenu = await fetchData(
           `${apiURL}/restaurants/daily/${restaurant._id}/en`
         );
