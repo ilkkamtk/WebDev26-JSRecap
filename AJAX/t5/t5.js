@@ -1,6 +1,6 @@
 const apiURL = 'https://media2.edu.metropolia.fi/restaurant/api/v1';
 
-async function getRestaurants() {
+const getRestaurants = async () => {
   try {
     // eslint-disable-next-line no-undef
     const restaurants = await fetchData(apiURL + '/restaurants');
@@ -18,13 +18,17 @@ async function getRestaurants() {
     console.log('first after', restaurants[0]);
 
     for (const restaurant of restaurants) {
+      // destrucure restaurant object
+      const {address, city, company, name, phone, location, postalCode} =
+        restaurant;
+
       const tr = document.createElement('tr');
 
       const td1 = document.createElement('td');
       const td2 = document.createElement('td');
 
-      td1.innerText = restaurant.name;
-      td2.innerText = restaurant.address;
+      td1.innerText = name;
+      td2.innerText = address;
 
       tr.insertAdjacentElement('beforeend', td1);
       tr.insertAdjacentElement('beforeend', td2);
@@ -44,21 +48,30 @@ async function getRestaurants() {
 
         console.log(todaysMenu);
 
-        let menu = '<tr>';
-        for (const course in todaysMenu.courses) {
+        let menu = '';
+        for (const course of todaysMenu.courses) {
           // add course data to menu as <td>s
+          console.log(course);
+          const {name, diets, price} = course;
+
+          menu += `
+            <tr>
+              <td>${name}</td>
+              <td>${diets}</td>
+              <td>${price || 'Not provided'}</td>
+            </tr>
+          `;
         }
-        menu += '</tr>';
 
         const dialog = document.querySelector('dialog');
 
         dialog.innerHTML = `
-        Restaurant name: ${restaurant.name}<br />
-        Address: <br />
-        Postal code: <br />
-        City: <br />
-        Phone number: <br />
-        Company: <br />
+        Restaurant name: ${name}<br />
+        Address: ${address}<br />
+        Postal code: ${postalCode}<br />
+        City: ${city}<br />
+        Phone number: ${phone}<br />
+        Company: ${company}<br />
 
         <table>
         ${menu}
@@ -79,6 +92,10 @@ async function getRestaurants() {
   } catch (error) {
     console.error(error.message);
   }
-}
+};
 
 getRestaurants();
+
+const multiply = (a, b) => a * b;
+
+console.log(multiply(2, 4));
